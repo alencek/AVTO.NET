@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
+
 namespace AVTO.NET
 {
     /// <summary>
@@ -37,11 +38,16 @@ namespace AVTO.NET
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             
-           oglasi.Add(new Oglas());
+           oglasi.Insert(0, new Oglas());
 
+            DodajOglas o = new DodajOglas();
+            o.Show();
+            
+            
+           
 
         }
-
+            
        
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -51,15 +57,16 @@ namespace AVTO.NET
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-            if(listViewOglasi.SelectedIndex >= 0) { 
-            listViewOglasi.Items.RemoveAt(listViewOglasi.SelectedIndex);
-            }
+            var selected = listViewOglasi.SelectedItem as Oglas;
+            oglasi.Remove(selected);
         }
 
         private void listViewOglasi_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var selected = listViewOglasi.SelectedItem as Oglas;
-            MessageBox.Show("Znamka: " + selected.znamka);
+            
+                var selected = listViewOglasi.SelectedItem as Oglas;
+                MessageBox.Show("Naziv: " + selected.znamka + " " + selected.model );
+            
         }
     }
 }
