@@ -5,8 +5,196 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AVTO.NET"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="800" Width="800">
         
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" Background="#072E57"></StackPanel>
+        <Image Source="images/avto-net.jpg" HorizontalAlignment="Left"></Image>
+        
+
+            <Menu Grid.Row="1" Grid.ColumnSpan="2" Foreground="White">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="1"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    
+                    <GradientStop Color="#FF1768BD" Offset="0.01"/>
+                    <GradientStop Color="#072E57" Offset="1"/>
+                    <GradientStop Color="#072E57" Offset="1"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            
+            <MenuItem>
+                <MenuItem.Icon>
+                    <Image Source="images/home_icon.png" HorizontalAlignment="Center"></Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Avto" >
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem Header="Avto oglasi" FontSize="8" />
+                <MenuItem Header="Katalog novih vozil"/>
+                <MenuItem Header="Cenitev vozil"/>
+                <MenuItem Header="Rent a car"/>
+                <MenuItem Header="Karambolirana in nebrezhibna vozila"/>
+                <MenuItem Header="Oldtimer-ji"/>
+                <MenuItem Header="Pregled po znamkah"/>
+            </MenuItem>
+            <MenuItem Header="Moto"></MenuItem>
+            <MenuItem Header="Dodaj oglas" Click="MenuItem_Click"></MenuItem>
+            <MenuItem Header="Briši oglas" Click="MenuItem_Click_2"></MenuItem>
+            <MenuItem Header="Prosti čas"></MenuItem>
+            <MenuItem Header="Deli in oprema"></MenuItem>
+            
+            <MenuItem Header="Datoteka">
+                <MenuItem.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </MenuItem.ItemsPanel>
+                <MenuItem Header="Naloži"></MenuItem>
+                <MenuItem Header="Izhod"></MenuItem>
+            </MenuItem>
+            <MenuItem  Click="MenuItem_Click_1">
+                <MenuItem.Icon>
+                    <Image Source="images/close.png"></Image>
+                </MenuItem.Icon>
+                
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2"  Margin="100, 20, 100, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="6" Grid.Row="0" Grid.Column="2" BorderBrush="Orange" BorderThickness="2" Margin="5">
+                <Button BorderThickness="0" Name="searchButton" Background="Orange" FontSize="15" VerticalContentAlignment="Center" Foreground="White">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="images/search.png" Width="20" Height="20" Margin="5 0"  HorizontalAlignment="Left" />
+                        <TextBlock Text="Iskanje" VerticalAlignment="Center"/>
+
+                    </StackPanel>
+                </Button>
+    
+                
+            </Border>
+            <Border CornerRadius="6" Grid.Row="0" Grid.Column="1" BorderBrush="#0348b0" BorderThickness="2" Margin="5">
+                <Button BorderThickness="0" Name="zadnjihSto" Background="#0348b0" FontSize="15" VerticalContentAlignment="Center" Foreground="White">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Zadnjih 100" VerticalAlignment="Center"/>
+                    <Image Source="images/desno.png" Width="20" Height="20" Margin="5 0"  HorizontalAlignment="Left" />
+ 
+                </StackPanel>
+                    </Button>
+            </Border>
+            <TextBox Name="searchTextBox" Text="Iskanje..."  Margin="10 2" VerticalContentAlignment="Center"></TextBox>
+            <ComboBox Grid.Row="1" Name="comboZnamka" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Izberite znamko">
+                <ComboBoxItem Content="Izberite znamko"/>
+                <ComboBoxItem Content="Audi"/>
+                <ComboBoxItem Content="BMW"/>
+                <ComboBoxItem Content="Citroen"/>
+                <ComboBoxItem Content="Ford"/>
+            </ComboBox>
+
+            <ComboBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="comboModel"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="model">
+                <ComboBoxItem Content="Izberite model"/>
+                <ComboBoxItem Content="A4"/>
+                <ComboBoxItem Content="A6"/>
+                <ComboBoxItem Content="R8"/>
+            </ComboBox>
+
+            <TextBox Name="textBoxTip" Grid.Row="1" VerticalContentAlignment="Center" Grid.Column="2" Margin="10 2" Text="katerikoli tip" ></TextBox>
+            <TextBlock Grid.Row="2" Foreground="#072E57" Text="Karoserijska izvedba" Margin="10, 2" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="13"></TextBlock>
+            <StackPanel Grid.Row="3" Grid.RowSpan="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <CheckBox Name="limuzina" Content="Limuzina" Margin="10 2"></CheckBox>
+                <CheckBox Name="kombilimuzina" Content="Kombilimuzina"  Margin="10 2"></CheckBox>
+                <CheckBox Name="karavan" Content="Karavan" Margin="10 2"></CheckBox>
+                <CheckBox Name="enoprostorec" Content="Enoprostorec" Margin="10 2"></CheckBox>
+                <CheckBox Name="coupe" Content="Coupe" Margin="10 2"></CheckBox>
+                
+            </StackPanel>
+
+            <ComboBox Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="cenaOd"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Cena od">
+                <ComboBoxItem Content="Cena od"/>
+                <ComboBoxItem Content="od 100€"/>
+                <ComboBoxItem Content="od 500€"/>
+                <ComboBoxItem Content="od 1.000€"/>
+            </ComboBox>
+
+            <ComboBox Grid.Row="3" Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="cenaDo"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Cena do">
+                <ComboBoxItem Content="Cena do"/>
+                <ComboBoxItem Content="do 100€"/>
+                <ComboBoxItem Content="do 500€"/>
+                <ComboBoxItem Content="do 1.000€"/>
+            </ComboBox>
+            <ComboBox Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="LetnikOd"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Letnik od">
+                <ComboBoxItem Content="Letnik od"/>
+                <ComboBoxItem Content="od 2000"/>
+                <ComboBoxItem Content="od 2001"/>
+                <ComboBoxItem Content="od 2002"/>
+                <ComboBoxItem Content="od 2003"/>
+                <ComboBoxItem Content="od 2004"/>
+                <ComboBoxItem Content="od 2010"/>
+            </ComboBox>
+            <ComboBox Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="LetnikDo"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Letnik do">
+                <ComboBoxItem Content="Letnik do"/>
+                <ComboBoxItem Content="do 2000"/>
+                <ComboBoxItem Content="do 2001"/>
+                <ComboBoxItem Content="do 2002"/>
+                <ComboBoxItem Content="do 2003"/>
+                <ComboBoxItem Content="do 2004"/>
+                <ComboBoxItem Content="do 2010"/>
+            </ComboBox>
+            <ComboBox Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="kmOd"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="prevoženih od">
+                <ComboBoxItem Content="Prevoženih od"/>
+                <ComboBoxItem Content="10000km"/>
+                <ComboBoxItem Content="100000km"/>
+                <ComboBoxItem Content="200000km"/>
+            </ComboBox>
+            <ComboBox Grid.Row="5" Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="kmDo"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Prevoženih do">
+                <ComboBoxItem Content="Prevoženih do"/>
+                <ComboBoxItem Content="10000km"/>
+                <ComboBoxItem Content="100000km"/>
+                <ComboBoxItem Content="200000km"/>
+            </ComboBox>
+        </Grid>
+
+        
+        <ListView Grid.Row="3" Grid.ColumnSpan="2" Name="listViewOglasi" Margin="45,10,55,10" Loaded="listViewOglasi_Loaded" MouseDoubleClick="listViewOglasi_MouseDoubleClick">
+            
+            
+        </ListView>
+
+      
+
+
     </Grid>
 </Window>
