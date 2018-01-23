@@ -9,7 +9,11 @@
     <Grid>
         <TabControl>
             <TabItem Header="Prodajalec">
-                <Button Height="50" Width="100" Click="Button_Click">add</Button>
+                <StackPanel>
+                    <Button Height="50" Width="100" Click="Button_Click">add</Button>
+                <TextBlock Height="30" Width="100" Text="{Binding }"></TextBlock>
+                </StackPanel>
+                
             </TabItem>
             <TabItem Header="Prevozno sredstvo"></TabItem>
         </TabControl>

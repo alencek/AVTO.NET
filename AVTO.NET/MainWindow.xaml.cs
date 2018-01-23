@@ -16,13 +16,15 @@ using System.Collections.ObjectModel;
 
 
 namespace AVTO.NET
-{
+{  
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private ObservableCollection<Oglas> oglasi;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -31,20 +33,31 @@ namespace AVTO.NET
                 new Oglas("Ford", "Mondeo", 200000, 7500, 2004, "/images/mondeo.jpg", "alen", "bracko", "licenca", 040138840)
             };
             listViewOglasi.ItemsSource = oglasi;
+           
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
 
+            Application.Current.Shutdown();
         }
 
+        public void DodajNovOglas(Oglas o)
+        {
+            oglasi.Insert(0, o);
+        }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             
-           oglasi.Insert(0, new Oglas());
+          
 
-            DodajOglas o = new DodajOglas();
-            o.Show();
+            DodajOglas dodajOglasOkno = new DodajOglas();
+            dodajOglasOkno.Show();
+
             
-            
-           
+
+
 
         }
             

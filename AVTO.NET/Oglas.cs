@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AVTO.NET
 {
-    class Prodajalec
+    public class Prodajalec
     {
         public string ime { set; get; }
         public string priimek { set; get; }
@@ -25,7 +25,7 @@ namespace AVTO.NET
 
 
 
-    class Oglas : Prodajalec
+   public class Oglas : Prodajalec
     {
         public string znamka { set; get; }
         public string model { set; get; }

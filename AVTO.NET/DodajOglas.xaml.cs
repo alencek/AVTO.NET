@@ -22,13 +22,15 @@ namespace AVTO.NET
         public DodajOglas()
         {
             InitializeComponent();
+          
         }
 
         
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Oglas o = new Oglas();
+            Oglas o = new Oglas("Fordosaki", "Mustang V8", 150000, 27900, 2005, "images/mustang.jpeg", "Alen", "Bracko", "Slovenske Konjice", 040138840);
+            ((MainWindow)Application.Current.MainWindow).DodajNovOglas(o);
         }
     }
 }
