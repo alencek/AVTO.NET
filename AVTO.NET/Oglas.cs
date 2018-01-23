@@ -35,18 +35,18 @@ namespace AVTO.NET
         public string slika { set; get; }
 
 
-        public Oglas(string z, string m, int p, int c, int l, string s, string pi, string pp, string pl, int pm)
+        public Oglas(string Znamka, string Model, int Prevozenih, int Cena, int Letnik, string Slika, string ProdajalecIme, string ProdalecPriimek, string ProdajalecLokacija, int ProdajalecMobi)
         {
-            znamka = z;
-            model = m;
-            prevozenihKm = p;
-            cena = c;
-            letnik = l;
-            slika = s;
-            ime = pi;
-            priimek = pp;
-            lokacija = pl;
-            mobStevilka = pm;
+            znamka = Znamka;
+            model = Model;
+            prevozenihKm = Prevozenih;
+            cena = Cena;
+            letnik = Letnik;
+            slika = Slika;
+            ime = ProdajalecIme;
+            priimek = ProdalecPriimek;
+            lokacija = ProdajalecLokacija;
+            mobStevilka = ProdajalecMobi;
         }
         public Oglas()
         {
