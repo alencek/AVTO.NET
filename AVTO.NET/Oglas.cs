@@ -6,7 +6,26 @@ using System.Threading.Tasks;
 
 namespace AVTO.NET
 {
-    class Oglas
+    class Prodajalec
+    {
+        public string ime { set; get; }
+        public string priimek { set; get; }
+        public string lokacija { set; get; }
+        public int mobStevilka { set; get; }
+
+
+        public Prodajalec()
+        {
+            ime = "defaultName";
+            priimek = "deafultLastName";
+            lokacija = "defaultLokacija";
+            mobStevilka = 000000000;
+        }
+    }
+
+
+
+    class Oglas : Prodajalec
     {
         public string znamka { set; get; }
         public string model { set; get; }
@@ -16,7 +35,7 @@ namespace AVTO.NET
         public string slika { set; get; }
 
 
-        public Oglas(string z, string m, int p, int c, int l, string s)
+        public Oglas(string z, string m, int p, int c, int l, string s, string pi, string pp, string pl, int pm)
         {
             znamka = z;
             model = m;
@@ -24,6 +43,10 @@ namespace AVTO.NET
             cena = c;
             letnik = l;
             slika = s;
+            ime = pi;
+            priimek = pp;
+            lokacija = pl;
+            mobStevilka = pm;
         }
         public Oglas()
         {
@@ -33,14 +56,12 @@ namespace AVTO.NET
             cena = 20000;
             letnik = 2010;
             slika = "images/rs.jpg";
+            ime = "defaultName";
+            priimek = "deafultLastName";
+            lokacija = "defaultLokacija";
+            mobStevilka = 000000000;
         }
     }
 
-    class Prodajalec : Oglas
-    {
-        public string ime { set; get; }
-        public string priimek { set; get; }
-        public string lokacija { set; get; }
-        public int mobStevilka { set; get; }
-    }
+    
 }

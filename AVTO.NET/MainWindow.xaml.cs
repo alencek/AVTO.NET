@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace AVTO.NET
 {
@@ -20,73 +21,28 @@ namespace AVTO.NET
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Oglas> oglasi;
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-
-
-        private void DodajOglas(Oglas oglas)
-        {
-            DockPanel dock = new DockPanel();
-            dock.LastChildFill = false;
-            Binding bnd = new Binding("Value") { ElementName = "listViewOglasi" };
-            BindingOperations.SetBinding(dock, DockPanel.WidthProperty, bnd);
-
-            Border bord = new Border(); //BORDER ZA SLIKO
-            bord.BorderThickness = new Thickness(1, 1, 1, 1);
-            bord.BorderBrush = Brushes.LightBlue;
-
-            Image slika = new Image(); //SLIKA
-            slika.SetValue(BackgroundProperty, Brushes.White);
-            slika.Height = 150;
-            slika.Width = 150;
-            string ImagesPath = oglas.slika;
-            slika.Source = new BitmapImage(new Uri(ImagesPath, UriKind.RelativeOrAbsolute));
-
-            bord.Child = slika;
-            dock.Children.Add(bord);
-
-            Label opis = new Label();
-            opis.Margin = new Thickness(10, 1, 1, 1);
-            opis.Content = oglas.znamka + " " + oglas.model + "\nLetnik 1.registracije: " + oglas.letnik + "\n" + oglas.prevozenihKm +"km" ;
-            dock.Children.Add(opis);
-
-            Label cena = new Label();
-            cena.Background = Brushes.White;
-            cena.FontSize = 25;
-            cena.Content = oglas.cena+"€";
-            cena.Margin = new Thickness(0, 0, 50, 50);
-            cena.BorderBrush = Brushes.LightBlue;
-            cena.BorderThickness = new Thickness(1, 1, 1, 1);
-            cena.HorizontalContentAlignment = HorizontalAlignment.Center;
-            cena.SetValue(Label.FontWeightProperty, FontWeights.Bold);
-            DockPanel.SetDock(cena, Dock.Right);
-
-            dock.Children.Add(cena);
-
-
-            listViewOglasi.Margin = new Thickness(0, 10, 0, 10);
-            ListViewItem i = new ListViewItem();
-            i.Content = dock;
-            listViewOglasi.Items.Insert(0, i);
-            
+            oglasi = new ObservableCollection<Oglas>() {
+                new Oglas("Ford", "Mustang V8", 150000, 27900, 2005, "images/mustang.jpeg", "Alen", "Bracko", "Slovenske Konjice", 040138840),
+                new Oglas("Ford", "Mondeo", 200000, 7500, 2004, "/images/mondeo.jpg", "alen", "bracko", "licenca", 040138840)
+            };
+            listViewOglasi.ItemsSource = oglasi;
 
         }
+
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             
-            DodajOglas(new Oglas("Ford", "Mustang V8", 150000, 27900, 2005, "images/mustang.jpeg"));
+           oglasi.Add(new Oglas());
 
 
         }
 
-        private void listViewOglasi_Loaded(object sender, RoutedEventArgs e)
-        {
-            DodajOglas(new Oglas());
-        }
+       
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
@@ -102,19 +58,8 @@ namespace AVTO.NET
 
         private void listViewOglasi_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DependencyObject obj = (DependencyObject)e.OriginalSource;
-
-            while (obj != null && obj != listViewOglasi)
-            {
-                if (obj.GetType() == typeof(ListViewItem))
-                {
-                    
-                    MessageBox.Show("");
-
-                    break;
-                }
-                obj = VisualTreeHelper.GetParent(obj);
-            }
+            var selected = listViewOglasi.SelectedItem as Oglas;
+            MessageBox.Show("Znamka: " + selected.znamka);
         }
     }
 }

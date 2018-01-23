@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="30*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -89,13 +89,14 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="6" Grid.Row="0" Grid.Column="2" BorderBrush="Orange" BorderThickness="2" Margin="5">
+            <Border CornerRadius="6" Grid.Row="6" Grid.Column="2" BorderBrush="Orange" BorderThickness="2" Margin="5">
                 <Button BorderThickness="0" Name="searchButton" Background="Orange" FontSize="15" VerticalContentAlignment="Center" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="images/search.png" Width="20" Height="20" Margin="5 0"  HorizontalAlignment="Left" />
@@ -106,7 +107,7 @@
     
                 
             </Border>
-            <Border CornerRadius="6" Grid.Row="0" Grid.Column="1" BorderBrush="#0348b0" BorderThickness="2" Margin="5">
+            <Border CornerRadius="6" Grid.Row="6" Grid.Column="1" BorderBrush="#0348b0" BorderThickness="2" Margin="5">
                 <Button BorderThickness="0" Name="zadnjihSto" Background="#0348b0" FontSize="15" VerticalContentAlignment="Center" Foreground="White">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Zadnjih 100" VerticalAlignment="Center"/>
@@ -185,11 +186,48 @@
                 <ComboBoxItem Content="100000km"/>
                 <ComboBoxItem Content="200000km"/>
             </ComboBox>
+
+            <ComboBox Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="tipVozila"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Tip vozila">
+                <ComboBoxItem Content="Tip vozila"/>
+                <ComboBoxItem Content="Avtomobil"/>
+                <ComboBoxItem Content="Motorno kolo"/>
+                <ComboBoxItem Content="Mehanizacija"/>
+            </ComboBox>
+            <ComboBox Grid.Row="0" Grid.Column="2" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" Name="stanjeVozila"   Margin="10 2"  IsEditable="True" IsReadOnly="True" Text="Stanje vozila">
+                <ComboBoxItem Content="Stanje vozila"/>
+                <ComboBoxItem Content="Odlično ohranjeno"/>
+                <ComboBoxItem Content="Dobro ohranjeno"/>
+                <ComboBoxItem Content="Slabo ohranjeno"/>
+                <ComboBoxItem Content="V okvari"/>
+                <ComboBoxItem Content="Karambolirano"/>
+            </ComboBox>
         </Grid>
 
         
-        <ListView Grid.Row="3" Grid.ColumnSpan="2" Name="listViewOglasi" Margin="45,10,55,10" Loaded="listViewOglasi_Loaded" MouseDoubleClick="listViewOglasi_MouseDoubleClick">
-            
+        <ListView Grid.Row="3" Grid.ColumnSpan="2" Name="listViewOglasi" Margin="45,10,55,10"  MouseDoubleClick="listViewOglasi_MouseDoubleClick">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Height="100">
+                        <Border  BorderThickness="2"  Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" BorderBrush="LightBlue">
+                        <Image VerticalAlignment="Top" Source="{Binding slika}"></Image>
+                        </Border>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="znamka" />
+                                        <Binding Path="model" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding prevozenihKm}"></TextBlock>
+                        </StackPanel>
+                        <Border HorizontalAlignment="Right" BorderThickness="2"  BorderBrush="LightBlue">
+                        <TextBlock  Text="{Binding cena}"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
             
         </ListView>
 
